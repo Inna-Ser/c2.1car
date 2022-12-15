@@ -6,11 +6,11 @@ public class Main {
         Car kia = new Car("Kia", "Sportage 4 generation", 2.4, "red", 2018, "South Korey");
         Car hyundai = new Car("Hyundai", "Avante", 1.6, "orange", 2016, "South Korey");
 
-        System.out.println(ladaGranta.toString());
-        System.out.println(audi.toString());
-        System.out.println(bmw.toString());
-        System.out.println(kia.toString());
-        System.out.println(hyundai.toString());
+        System.out.println(ladaGranta);
+        System.out.println(audi);
+        System.out.println(bmw);
+        System.out.println(kia);
+        System.out.println(hyundai);
     }
 
 

@@ -260,6 +260,7 @@ public class Car {
         } else return true;
     }
 
+    // метод проверки сроков страховки
     public void IsValidInsurance() {
         if (Car.Insurance.termOfInsurance.isBefore(LocalDate.now()) || Car.Insurance.termOfInsurance.isEqual(LocalDate.now())) {
             System.out.println("Для автомобиля " + brand + " " + model + " необходимо срочно обновить страховку");

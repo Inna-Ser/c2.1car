@@ -28,6 +28,5 @@ public class Main {
         bmw.IsValidInsurance();
         kia.IsValidInsurance();
         hyundai.IsValidInsurance();
-
     }
 }

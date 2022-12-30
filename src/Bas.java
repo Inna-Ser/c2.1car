@@ -41,7 +41,7 @@ public class Bas extends Transport {
     @Override
     public String toString() {
         return "Bas{" +
-                ", brand='" + getBrand() + '\'' +
+                "\n, brand='" + getBrand() + '\'' +
                 ", model='" + getModel() + '\'' +
                 ", color='" + color + '\'' +
                 ", productionCountry='" + getProductionCountry() + '\'' +

@@ -224,7 +224,7 @@ public class Car extends Transport {
 
     @Override
     public String toString() {
-        return "Автомобиль марка: " + getBrand() + "; модель: " + getModel() + "; цвет: " + color + "; " +
+        return "Автомобиль марка: " + getBrand() + "; модель: " + getModel() + "; цвет: " + color +
                 "; объем двигателя: " + engineVolume + "; год выпуска: " + getProductionYear() +
                 "; страна производитель: " + getProductionCountry() + "; коробка передач: " + transmission +
                 "; тип кузоав: " + bodyType + "; регистрационный номер: " + registrationNumber +

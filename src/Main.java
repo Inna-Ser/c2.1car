@@ -17,7 +17,7 @@ public class Main {
 
         Bas mercedes = new Bas("Mercedes", "Tourismo", "gray", "Germany", 2015, 140, 52, true);
         Bas volvo = new Bas("Volvo", "Scania", "blue", "Sweden", 2013, 160, 42, true);
-        Bas maz = new Bas("MAZ", "PAZ", "blue", "Belarus", 2014, 140, 59, true);
+        Bas maz = new Bas("MAZ", "PAZ", "green", "Belarus", 2014, 140, 59, true);
 
         System.out.println(ladaGranta);
         System.out.println(audi);

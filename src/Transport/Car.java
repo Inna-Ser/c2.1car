@@ -3,7 +3,7 @@ package Transport;
 import java.time.LocalDate;
 import java.time.Month;
 
-public class Car {
+public class Car extends Transport {
     // вложенный класс Key
     public static class Key {
         private final boolean remoteEngineStart;
@@ -14,7 +14,7 @@ public class Car {
             this.keylessAccess = keylessAccess;
         }
 
-        public boolean remoteEngineStart() {
+        public boolean getRemoteEngineStart() {
             return remoteEngineStart;
         }
 
@@ -84,12 +84,7 @@ public class Car {
     }
 
     // поля класса Car
-    private final String brand;
-    private final String model;
     private double engineVolume;
-    private String color;
-    private final int productionYear;
-    private final String productionCountry;
     private String transmission;
     private final String bodyType;
     private String registrationNumber;
@@ -99,12 +94,15 @@ public class Car {
     private Insurance insurance;
 
     // конструктор класса Car
+
+
     public Car(String brand,
                String model,
-               double engineVolume,
                String color,
-               int productionYear,
                String productionCountry,
+               int productionYear,
+               int maxSpeed,
+               double engineVolume,
                String transmission,
                String bodyType,
                String registrationNumber,
@@ -112,29 +110,9 @@ public class Car {
                boolean summerTires,
                Key key,
                Insurance insurance) {
+        super(brand, model, color, productionCountry, productionYear, maxSpeed);
 
-        if (brand == null || brand.isEmpty()) {
-            this.brand = "default";
-        } else {
-            this.brand = brand;
-        }
-        if (model == null || model.isEmpty()) {
-            this.model = "default";
-        } else {
-            this.model = model;
-        }
         this.engineVolume = 1.5;
-        this.color = "white";
-        if (productionYear < 0) {
-            this.productionYear = 2000;
-        } else {
-            this.productionYear = productionYear;
-        }
-        if (productionCountry == null || productionCountry.isEmpty()) {
-            this.productionCountry = "default";
-        } else {
-            this.productionCountry = productionCountry;
-        }
         this.transmission = "manualTransmission";
         if (bodyType == null || bodyType.isEmpty()) {
             this.bodyType = "sedan";
@@ -156,13 +134,6 @@ public class Car {
     }
 
     // геттеры и сеттеры класса Car
-    public String getBrand() {
-        return brand;
-    }
-
-    public String getModel() {
-        return model;
-    }
 
     public double getEngineVolume() {
         return engineVolume;
@@ -174,24 +145,6 @@ public class Car {
         } else this.engineVolume = engineVolume;
     }
 
-    public String getColor() {
-        return color;
-    }
-
-    public void setColor() {
-        if (color == null || color.isEmpty()) {
-            this.color = "white";
-        } else
-            this.color = color;
-    }
-
-    public int getProductionYear() {
-        return productionYear;
-    }
-
-    public String getProductionCountry() {
-        return productionCountry;
-    }
 
     public String getTransmission() {
         return transmission;
@@ -220,7 +173,7 @@ public class Car {
         return summerTires;
     }
 
-    public void setTires(boolean summerTires) {
+    public void setSummerTires(boolean summerTires) {
         this.summerTires = summerTires;
     }
 
@@ -262,23 +215,23 @@ public class Car {
 
     // метод проверки сроков страховки
     public void IsValidInsurance() {
-        if (Car.Insurance.termOfInsurance.isBefore(LocalDate.now()) || Car.Insurance.termOfInsurance.isEqual(LocalDate.now())) {
-            System.out.println("Для автомобиля " + brand + " " + model + " необходимо срочно обновить страховку");
+        if (Insurance.termOfInsurance.isBefore(LocalDate.now()) || Insurance.termOfInsurance.isEqual(LocalDate.now())) {
+            System.out.println("Для автомобиля " + getBrand() + " " + getModel() + " необходимо срочно обновить страховку");
         } else {
-            System.out.println("Страховка для автомобиля " + brand + " действительна до " + Car.Insurance.termOfInsurance);
+            System.out.println("Страховка для автомобиля " + getBrand() + " действительна до " + Car.Insurance.termOfInsurance);
         }
     }
 
     @Override
     public String toString() {
-        return "Автомобиль марка: " + brand + "; модель: " + model + "; цвет: " + color + "; " +
-                "; объем двигателя: " + engineVolume + "; год выпуска: " + productionYear +
-                "; страна производитель: " + productionCountry + "; коробка передач: " + transmission +
+        return "Автомобиль марка: " + getBrand() + "; модель: " + getModel() + "; цвет: " + color + "; " +
+                "; объем двигателя: " + engineVolume + "; год выпуска: " + getProductionYear() +
+                "; страна производитель: " + getProductionCountry() + "; коробка передач: " + transmission +
                 "; тип кузоав: " + bodyType + "; регистрационный номер: " + registrationNumber +
                 "; количество мест: " + seatsCount + "; тип покрышек: " + changeTires() +
                 "; удаленный запуск двигателя: " + getKey().isRemoteEngineStart() +
                 "; бесключевой досту: " + getKey().isKeylessAccess() +
-                "; срок действия страховки: " + getInsurance().termOfInsurance +
+                "; срок действия страховки: " + getInsurance().getTermOfInsurance() +
                 "; стоимость страховки: " + getInsurance().costInsurance +
                 "; номер страховки: " + getInsurance().numberInsurance + "\n" + " ";
     }

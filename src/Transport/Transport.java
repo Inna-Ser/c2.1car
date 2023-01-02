@@ -1,14 +1,17 @@
 package Transport;
-
-public abstract class Transport {
+public abstract class Transport implements Competing {
+    public static final String START_MOVE = "Начал движение";
+    public static final String FINISH_MOVE = "Закончил движение";
+    public static final String PIT_STOP = "Поменял резину";
+    //    public static final String[] ACTIONS_COMPETING = {START_MOVE, FINISH_MOVE, PIT_STOP};
+//    private String[] actions = new String[ACTIONS_COMPETING.length];
     private String brand;
     private String model;
-    protected String color;
-    private String productionCountry;
-    private int productionYear;
-    protected int maxSpeed;
+    private double engineVolume;
 
-    public Transport(String brand, String model, String color, String productionCountry, int productionYear, int maxSpeed) {
+    public Transport(String brand, String model,
+//                     String color, String productionCountry, int productionYear, int maxSpeed,
+                     double engineVolume) {
         if (brand == null || brand.isEmpty() || brand.isBlank()) {
             this.brand = "default";
         } else {
@@ -19,64 +22,73 @@ public abstract class Transport {
         } else {
             this.model = model;
         }
-        if (color == null || color.isEmpty() || color.isBlank()) {
-            this.color = "white";
+        if (engineVolume == 0) {
+            this.engineVolume = 3.00;
         } else {
-            this.color = color;
+            this.engineVolume = engineVolume;
         }
-        if (productionYear < 0) {
-            this.productionYear = 2000;
-        } else {
-            this.productionYear = productionYear;
-        }
-        if (productionCountry == null || productionCountry.isEmpty() || productionCountry.isBlank()) {
-            this.productionCountry = "default";
-        } else {
-            this.productionCountry = productionCountry;
-        }
-        this.maxSpeed = maxSpeed;
     }
 
     public String getBrand() {
         return brand;
     }
 
-    public void setBrand(String brand) {
-        this.brand = brand;
-    }
-
     public String getModel() {
         return model;
     }
 
-    public void setModel(String model) {
-        this.model = model;
+    public double getEngineVolume() {
+        return engineVolume;
     }
 
-    public String getColor() {
-        return color;
+    public void doStartMove() {
+        System.out.println("Автомобиль " + brand + " " + model + " " + START_MOVE);
     }
 
-    public void setColor() {
-        if (color == null || color.isEmpty()) {
-            this.color = "white";
-        } else
-            this.color = color;
+    public void doFinishMove() {
+        System.out.println("Автомобиль " + brand + " " + model + " " + START_MOVE);
     }
 
-    public int getProductionYear() {
-        return productionYear;
+    // методы класса Competing
+    @Override
+    public void doPitStop() {
+        System.out.println("Автомобиль " + brand + " " + model + " " + PIT_STOP);
     }
 
-    public String getProductionCountry() {
-        return productionCountry;
+    @Override
+    public void FindBestCircleTime(double timeCircle1, double timeCircle2) {
+        if (timeCircle1 >= timeCircle2) {
+            System.out.println("Лучшее время круга для " + brand + " " + model + " - " + timeCircle2 + "мин.");
+        } else {
+            if (timeCircle1 < timeCircle2) {
+                System.out.println("Лучшее время круга для " + brand + " " + model + " - " + timeCircle1 + "мин.");
+            }
+        }
     }
 
-    public int getMaxSpeed() {
-        return maxSpeed;
+    @Override
+    public void findMaximumSpeed(int speedCircle1, int speedCircle2) {
+        int maximumSpeed;
+        if (speedCircle1 >= speedCircle2) {
+            System.out.println("Лучшая скорость для " + brand + " " + model + " - " +  speedCircle1 + "км/ч");
+        } else {
+            if (speedCircle1 < speedCircle2) {
+                System.out.println("Лучшая скорость для " + brand + " " + model + " - " + speedCircle1 + "км/ч");
+            }
+        }
     }
 
-    public void setMaxSpeed(int maxSpeed) {
-        this.maxSpeed = maxSpeed;
+    @Override
+    public String toString() {
+        return " brand='" + brand + '\'' +
+                ", model='" + model + '\'' +
+                ", engineVolume=" + engineVolume + "l";
     }
+
+    //   public String changeCheckUp() {
+    //       if (isCheckUp == true) {
+    //          return "check up passed";
+    //      } else
+    //          return "check up failed";
+    //  }
 }

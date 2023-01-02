@@ -1,38 +1,67 @@
+import Driver.Driver;
+import Transport.Bus;
 import Transport.Car;
-
+import Transport.Truck;
+import Driver.GradeB;
+import Driver.GradeC;
+import Driver.GradeD;
 public class Main {
     public static void main(String[] args) {
-        Car.Key key = new Car.Key(false, false);
-        Car.Key key1 = new Car.Key(false, true);
-        Car.Key key2 = new Car.Key(true, false);
-        Car.Key key3 = new Car.Key(true, true);
 
-        Car.Insurance insurance = new Car.Insurance(null, 0, null);
+        Bus mercedes = new Bus("Mercedes", "Tourismo", 4.8);
+        Bus volvo = new Bus("Volvo", "Scania", 3.0);
+        Bus maz = new Bus("MAZ", "PAZ", 3.6);
+        Bus ford = new Bus("Ford", "Transit", 2.2);
 
-        Car ladaGranta = new Car("Lada", "Granta", "yelow", "Russia", 2015, 0, 1.7, null, null, null, 0, true, key, insurance);
-        Car audi = new Car("Audi", "A8 50 L TDI quattro", "black", "Germany", 2020, 0, 3.0, null, null, null, 0, true, key3, insurance);
-        Car bmw = new Car("BMW", "Z8", "black", "Germany", 2021, 0, 3.0, null, null, null, 0, true, key3, insurance);
-        Car kia = new Car("Kia", "Sportage 4 generation", "red", "South Korey", 2018, 0, 2.4, null, null, null, 0, true, key1, insurance);
-        Car hyundai = new Car("Hyundai", "Avante", "orange", "South Korey", 2016, 0, 1.6, null, null, null, 0, true, key2, insurance);
+        Car ladaGranta = new Car("Lada", "Granta", 1.6);
+        Car audi = new Car("Audi", "A8 50 L TDI quattro", 3.0);
+        Car bmw = new Car("BMW", "Z8", 3.0);
+        Car kia = new Car("Kia", "Sportage 4 generation", 2.4);
 
-        Bas mercedes = new Bas("Mercedes", "Tourismo", "gray", "Germany", 2015, 140, 52, true);
-        Bas volvo = new Bas("Volvo", "Scania", "blue", "Sweden", 2013, 160, 42, true);
-        Bas maz = new Bas("MAZ", "PAZ", "green", "Belarus", 2014, 140, 59, true);
+        Truck freightliner = new Truck("Freightliner", "Cascadia", 14.0);
+        Truck mack = new Truck("Mack", "600 CXU600", 14.0);
+        Truck peterbilt = new Truck("peterbilt", "379", 14.0);
+        Truck chevrolet = new Truck("Chevrolet", "С65", 14.0);
 
-        System.out.println(ladaGranta);
-        System.out.println(audi);
-        System.out.println(bmw);
-        System.out.println(kia);
-        System.out.println(hyundai);
+        System.out.println("Bus" + mercedes);
+        System.out.println("Bus" + volvo);
+        System.out.println("Bus" + maz);
+        System.out.println("Bus" + ford);
 
-        ladaGranta.IsValidInsurance();
-        audi.IsValidInsurance();
-        bmw.IsValidInsurance();
-        kia.IsValidInsurance();
-        hyundai.IsValidInsurance();
+        System.out.println(" ");
+        System.out.println("Car" + ladaGranta);
+        System.out.println("Car" + audi);
+        System.out.println("Car" + bmw);
+        System.out.println("Car" + kia);
 
-        System.out.println(mercedes);
-        System.out.println(volvo);
-        System.out.println(maz);
+        System.out.println(" ");
+        System.out.println("Truck" + freightliner);
+        System.out.println("Truck" + mack);
+        System.out.println("Truck" + peterbilt);
+        System.out.println("Truck" + chevrolet);
+
+        System.out.println(" ");
+        mercedes.doPitStop();
+        bmw.doStartMove();
+        chevrolet.doFinishMove();
+
+        System.out.println(" ");
+        volvo.FindBestCircleTime(2.5, 2.1);
+        kia.findMaximumSpeed(154, 149);
+
+        System.out.println(" ");
+        GradeB<Car> roman = new GradeB<Car>("Пискунов Роман Алексеевич", true, 12);
+        GradeD<Bus> sergey = new GradeD<Bus>("Малышев Сергей Витальевич", true, 15);
+        GradeC<Truck> andrey = new GradeC<Truck>("Коломин Андрей Иванович", true, 10);
+
+        System.out.println(" ");
+        System.out.println(roman);
+        System.out.println(sergey);
+        System.out.println(andrey);
+
+        System.out.println(" ");
+        roman.drive(audi);
+        sergey.drive(ford);
+        andrey.drive(chevrolet);
     }
 }

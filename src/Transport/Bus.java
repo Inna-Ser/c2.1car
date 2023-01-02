@@ -2,9 +2,9 @@ package Transport;
 
 import Driver.Driver;
 
-public class Car<D extends Driver> extends Transport implements Competing {
+public class Bus<D extends Driver>  extends Transport implements Competing {
 
-    public Car(String brand, String model, double engineVolume) {
+    public Bus(String brand, String model, double engineVolume) {
         super(brand, model, engineVolume);
     }
 
@@ -33,7 +33,3 @@ public class Car<D extends Driver> extends Transport implements Competing {
         super.findMaximumSpeed(speedCircle1, speedCircle2);
     }
 }
-
-
-
-

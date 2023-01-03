@@ -55,16 +55,6 @@ public abstract class Transport implements Competing {
         System.out.println("Автомобиль " + brand + " " + model + " " + PIT_STOP);
     }
 
-    @Override
-    public void FindBestCircleTime(double timeCircle1, double timeCircle2) {
-        if (timeCircle1 >= timeCircle2) {
-            System.out.println("Лучшее время круга для " + brand + " " + model + " - " + timeCircle2 + "мин.");
-        } else {
-            if (timeCircle1 < timeCircle2) {
-                System.out.println("Лучшее время круга для " + brand + " " + model + " - " + timeCircle1 + "мин.");
-            }
-        }
-    }
 
     @Override
     public void findMaximumSpeed(int speedCircle1, int speedCircle2) {
@@ -72,17 +62,24 @@ public abstract class Transport implements Competing {
         if (speedCircle1 >= speedCircle2) {
             System.out.println("Лучшая скорость для " + brand + " " + model + " - " +  speedCircle1 + "км/ч");
         } else {
-            if (speedCircle1 < speedCircle2) {
-                System.out.println("Лучшая скорость для " + brand + " " + model + " - " + speedCircle1 + "км/ч");
+                System.out.println("Лучшая скорость для " + brand + " " + model + " - " + speedCircle2 + "км/ч");
             }
         }
-    }
+
+    @Override
+    public void findBestCircleTime(double timeCircle1, double timeCircle2) {
+        if (timeCircle1 >= timeCircle2) {
+            System.out.println("Лучшее время круга для " + brand + " " + model + " - " + timeCircle2 + "мин.");
+        } else {
+                System.out.println("Лучшее время круга для " + brand + " " + model + " - " + timeCircle1 + "мин.");
+            }
+        }
 
     @Override
     public String toString() {
         return " brand='" + brand + '\'' +
                 ", model='" + model + '\'' +
-                ", engineVolume=" + engineVolume + "l";
+                ", engineVolume=" + engineVolume + "l" + " тип кузова- " + Car.getTypeBody();
     }
 
     //   public String changeCheckUp() {

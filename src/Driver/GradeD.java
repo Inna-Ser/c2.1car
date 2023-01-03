@@ -2,7 +2,7 @@ package Driver;
 import Transport.Bus;
 import Transport.Transport;
 import Transport.Competing;
-public class GradeD <T extends Transport & Competing> extends Driver{
+public class GradeD extends Driver{
     public GradeD(String fullName,
                   boolean drivingLicense,
                   int drivingExperience) {

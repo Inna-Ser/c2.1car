@@ -3,7 +3,7 @@ package Driver;
 import Transport.Transport;
 import Transport.Competing;
 
-public abstract class Driver implements Driving {
+public abstract class Driver<T extends Transport & Competing>  implements Driving {
     private String fullName;
     private boolean drivingLicense;
     private int drivingExperience;

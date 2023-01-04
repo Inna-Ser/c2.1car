@@ -2,7 +2,7 @@ package Transport;
 
 import Driver.Driver;
 
-public class Bus<D extends Driver>  extends Transport implements Competing {
+public class Bus extends Transport implements Competing {
 public enum TypeBody {
     VERY_SMALL("особо малая"),
     SMALL("малая"),
@@ -17,7 +17,8 @@ public enum TypeBody {
 }
 private TypeBody capacity;
 
-    public Bus(String brand, String model, double engineVolume, TypeBody capacity) {
+    public Bus(String brand, String model, double engineVolume,
+               TypeBody capacity) {
         super(brand, model, engineVolume);
         this.capacity = capacity;
     }

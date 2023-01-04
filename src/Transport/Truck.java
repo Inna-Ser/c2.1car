@@ -2,7 +2,7 @@ package Transport;
 
 import Driver.Driver;
 
-public class Truck<D extends Driver> extends Transport implements Competing {
+public class Truck extends Transport implements Competing {
     public enum CargoTruck {
         N1 (0,12.0),
         N2 (3.5,12.0),
@@ -13,19 +13,29 @@ public class Truck<D extends Driver> extends Transport implements Competing {
         CargoTruck (double min, double max) {
             this.min = min;
             this.max = max;
+
+
         }
     }
 //    private final CargoTruck[] typeBodyTruck = new CargoTruck[][CargoTruck.values().length];
-   private CargoTruck cargoTruck;
+   private CargoTruck min;
+   private CargoTruck max;
 
-    public Truck(String brand, String model, double engineVolume, CargoTruck cargoTruck) {
+    public Truck(String brand, String model, double engineVolume, CargoTruck min, CargoTruck max) {
         super(brand, model, engineVolume);
-        this.cargoTruck = cargoTruck;
+        this.min = min;
+        this.max = max;
     }
-    //    public String[] getTypeBodyTruck() {
-//        return typeBodyTruck;
-//    }
 
+    public CargoTruck getMin() {
+        return min;
+    }
+//
+    public CargoTruck getMax() {
+        return max;
+    }
+
+//
     public String[] getCargoTruck() {
         String[] cargoTruck = new String[CargoTruck.values().length];
         for (int i = 0; i < cargoTruck.length; i++) {
@@ -33,7 +43,7 @@ public class Truck<D extends Driver> extends Transport implements Competing {
         }
         return cargoTruck;
     }
-
+//
     @Override
     public void findBestCircleTime(double timeCircle1, double timeCircle2) {
         super.findBestCircleTime(timeCircle1, timeCircle2);
@@ -44,10 +54,10 @@ public class Truck<D extends Driver> extends Transport implements Competing {
         super.findMaximumSpeed(speedCircle1, speedCircle2);
     }
 
-    @Override
-    public String toString() {
-        return "Truck{} " + super.toString() + " тип кузова- " + cargoTruck;
-    }
+//    @Override
+//    public String toString() {
+//        return "Truck{} " + super.toString();
+//    }
 }
 
 

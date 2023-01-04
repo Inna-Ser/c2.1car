@@ -2,7 +2,7 @@ package Transport;
 
 import Driver.Driver;
 
-public class Car<D extends Driver> extends Transport implements Competing {
+public class Car extends Transport implements Competing {
     public enum TypeBody {
         COUPE("Купе"),
         CROSSOVER("Кроссовер"),
@@ -47,7 +47,8 @@ public class Car<D extends Driver> extends Transport implements Competing {
 
     @Override
     public String toString() {
-        return " " + super.toString() + " тип кузова- " + getTypeBody();
+        return " " + super.toString() +
+                " тип кузова- " + typeBody;
     }
 }
 

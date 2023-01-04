@@ -65,6 +65,11 @@ public abstract class Driver<T extends Transport & Competing>  implements Drivin
     public void refuelCar() {
         System.out.println("Заправить автомобиль");
     }
+    public void drive(T transport) {
+        System.out.println(" Водитель " + getFullName() +
+                " управляет автомобилем " + transport.getBrand() +
+                " " + transport.getModel() + " и будет участвовать в заезде.");
+    }
 
     @Override
     public String toString() {

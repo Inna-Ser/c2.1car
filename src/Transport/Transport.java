@@ -1,4 +1,5 @@
 package Transport;
+
 public abstract class Transport implements Competing {
     public static final String START_MOVE = "Начал движение";
     public static final String FINISH_MOVE = "Закончил движение";
@@ -79,7 +80,7 @@ public abstract class Transport implements Competing {
     public String toString() {
         return " brand='" + brand + '\'' +
                 ", model='" + model + '\'' +
-                ", engineVolume=" + engineVolume + "l" + " тип кузова- " + Car.getTypeBody();
+                ", engineVolume=" + engineVolume + "l";
     }
 
     //   public String changeCheckUp() {

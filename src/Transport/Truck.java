@@ -3,47 +3,51 @@ package Transport;
 import Driver.Driver;
 
 public class Truck extends Transport implements Competing {
-    public enum CargoTruck {
-        N1 (0,12.0),
-        N2 (3.5,12.0),
-        N3 (12.0, 0);
-        private double min;
-        private double max;
 
-        CargoTruck (double min, double max) {
+    public enum TypeBody {
+        N1(0D, 12.0),
+        N2(3.5, 12.0),
+        N3(12.0, 0D);
+        private final double min;
+        private final double max;
+
+        TypeBody(double min, double max) {
             this.min = min;
             this.max = max;
+        }
 
+        public double getMin() {
+            return min;
+        }
 
+        public double getMax() {
+            return max;
         }
     }
-//    private final CargoTruck[] typeBodyTruck = new CargoTruck[][CargoTruck.values().length];
-   private CargoTruck min;
-   private CargoTruck max;
 
-    public Truck(String brand, String model, double engineVolume, CargoTruck min, CargoTruck max) {
+    private TypeBody typeBody;
+
+    public Truck(String brand, String model, double engineVolume, TypeBody typeBody) {
         super(brand, model, engineVolume);
-        this.min = min;
-        this.max = max;
+        this.typeBody = typeBody;
     }
 
-    public CargoTruck getMin() {
-        return min;
-    }
-//
-    public CargoTruck getMax() {
-        return max;
+    public TypeBody getTypeBody() {
+        return typeBody;
     }
 
-//
-    public String[] getCargoTruck() {
-        String[] cargoTruck = new String[CargoTruck.values().length];
-        for (int i = 0; i < cargoTruck.length; i++) {
-            cargoTruck[i] = CargoTruck.values()[i].name();
+    @Override
+    public void printTypeBody() {
+        if (typeBody == null) {
+            System.out.println(getBrand() + " " + getModel() + " - грузопподъемность: - данных по транспортному средству недостаточно");
+        } else {
+            String min = this.typeBody.min == 0 ? "" : "от " + this.typeBody.min + " тонн.";
+            String max = this.typeBody.max == 0 ? "" : " до " + this.typeBody.max + " тонн.";
+
+            System.out.println(getBrand() + " " + getModel() + " - грузопподъемность: " + min + " " + max);
         }
-        return cargoTruck;
     }
-//
+
     @Override
     public void findBestCircleTime(double timeCircle1, double timeCircle2) {
         super.findBestCircleTime(timeCircle1, timeCircle2);
@@ -54,10 +58,10 @@ public class Truck extends Transport implements Competing {
         super.findMaximumSpeed(speedCircle1, speedCircle2);
     }
 
-//    @Override
-//    public String toString() {
-//        return "Truck{} " + super.toString();
-//    }
+    @Override
+    public String toString() {
+        return super.toString() + ", тип кузова - " + typeBody;
+    }
 }
 
 

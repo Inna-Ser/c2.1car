@@ -50,12 +50,13 @@ public abstract class Transport implements Competing {
         System.out.println("Автомобиль " + brand + " " + model + " " + START_MOVE);
     }
 
+    public abstract void printTypeBody();
+
     // методы класса Competing
     @Override
     public void doPitStop() {
         System.out.println("Автомобиль " + brand + " " + model + " " + PIT_STOP);
     }
-
 
     @Override
     public void findMaximumSpeed(int speedCircle1, int speedCircle2) {

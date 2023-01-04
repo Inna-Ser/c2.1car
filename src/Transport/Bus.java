@@ -4,23 +4,46 @@ import Driver.Driver;
 
 public class Bus extends Transport implements Competing {
 public enum TypeBody {
-    VERY_SMALL("особо малая"),
-    SMALL("малая"),
-    MEDIUM("средняя"),
-    BIG("большая"),
-    VERY_BIG("особо большая");
-    private final String capacity;
+    VERY_SMALL(0, 10),
+    SMALL(10, 25),
+    MEDIUM(40, 50),
+    BIG(60, 80),
+    VERY_BIG(100, 120);
+    private final Integer min;
+    private final Integer max;
 
-    TypeBody(String capacity) {
-        this.capacity = capacity;
+    TypeBody(Integer min, Integer max) {
+        this.min = min;
+        this.max = max;
+    }
+
+    public Integer getMin() {
+        return min;
+    }
+
+    public Integer getMax() {
+        return max;
     }
 }
-private TypeBody capacity;
+private TypeBody typeBody;
 
     public Bus(String brand, String model, double engineVolume,
-               TypeBody capacity) {
+               TypeBody typeBody) {
         super(brand, model, engineVolume);
-        this.capacity = capacity;
+        this.typeBody = typeBody;
+    }
+
+    public TypeBody getTypeBody() {
+        return typeBody;
+    }
+
+    @Override
+    public void printTypeBody() {
+        if (typeBody == null) {
+            System.out.println(getBrand() + " " + getModel() + " вместимость: - данных по транспортному средству недостаточно");
+        } else {
+            System.out.println(getBrand() + " " + getModel() + " -  от " + typeBody.min + " до " + typeBody.max + " пассажирских мест.");
+        }
     }
 
     @Override
@@ -35,7 +58,7 @@ private TypeBody capacity;
 
     @Override
     public String toString() {
-        return "Bus{} " + super.toString() + "тип кузова- " + capacity;
+        return super.toString() + ", тип кузова - " + typeBody;
     }
 }
 

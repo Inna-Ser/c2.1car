@@ -12,7 +12,7 @@ public class Car extends Transport implements Competing {
         SEDAN("Седан"),
         SUV("Внедорожник"),
         UNIVERSAL("Универсал"),
-        VAN ("Фургон");
+        VAN("Фургон");
         private final String type;
 
         TypeBody(String type) {
@@ -36,6 +36,14 @@ public class Car extends Transport implements Competing {
     }
 
     @Override
+    public void printTypeBody() {
+        if (typeBody == null) {
+            System.out.println(getBrand() + " " + getModel() + " тип кузова: - данных по транспортному средству недостаточно.");
+        } else
+            System.out.println(getBrand() + " " + getModel() + " - тип кузова: " + typeBody);
+    }
+
+    @Override
     public void findBestCircleTime(double timeCircle1, double timeCircle2) {
         super.findBestCircleTime(timeCircle1, timeCircle2);
     }
@@ -43,14 +51,15 @@ public class Car extends Transport implements Competing {
     @Override
     public void findMaximumSpeed(int speedCircle1, int speedCircle2) {
         super.findMaximumSpeed(speedCircle1, speedCircle2);
+
     }
 
     @Override
     public String toString() {
-        return " " + super.toString() +
-                " тип кузова- " + typeBody;
+        return super.toString() + ", тип кузова - " + typeBody;
     }
 }
+
 
 
 

@@ -1,13 +1,12 @@
 import Driver.Driver;
+import Exception.NotPassDiagnosticException;
 import Transport.Bus;
 import Transport.Car;
+import Transport.Transport;
 import Transport.Truck;
-import Driver.GradeB;
-import Driver.GradeC;
-import Driver.GradeD;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws NotPassDiagnosticException {
 
         Bus mercedes = new Bus("Mercedes", "Tourismo", 4.8, Bus.TypeBody.BIG);
         Bus volvo = new Bus("Volvo", "Scania", 3.0, null);
@@ -51,9 +50,12 @@ public class Main {
         kia.findMaximumSpeed(154, 149);
 
         System.out.println(" ");
-        GradeB roman = new GradeB("Пискунов Роман Алексеевич", true, 12);
-        GradeB sergey = new GradeB("Малышев Сергей Витальевич", true, 15);
-        GradeC andrey = new GradeC("Коломин Андрей Иванович", true, 10);
+//        GradeB roman = new GradeB("Пискунов Роман Алексеевич", true, 12);
+//        GradeB sergey = new GradeB("Малышев Сергей Витальевич", true, 15);
+//        GradeC andrey = new GradeC("Коломин Андрей Иванович", true, 10);
+        Driver<Car> roman = new Driver("Пискунов Роман Алексеевич", "", 12);
+        Driver<Bus> sergey = new Driver("Малышев Сергей Витальевич", "C", 15);
+        Driver<Truck> andrey = new Driver("Коломин Андрей Иванович", "H", 10);
 
         System.out.println(" ");
         System.out.println(roman);
@@ -62,7 +64,7 @@ public class Main {
 
         System.out.println(" ");
         roman.drive(audi);
-        sergey.drive(ladaGranta);
+        sergey.drive(volvo);
         andrey.drive(chevrolet);
         System.out.println(" ");
 
@@ -74,5 +76,19 @@ public class Main {
         freightliner.printTypeBody();
         volvo.printTypeBody();
         bmw.printTypeBody();
+
+        passDiagnostic(bmw, volvo, freightliner);
+
+
+    }
+
+    public static void passDiagnostic(Transport... transports) {
+        for (Transport transport : transports)
+            try {
+                transport.passDiagnostic();
+            } catch (NotPassDiagnosticException e) {
+                System.out.println("произошла ошибка с атомобилем " + e.getTransport().getModel());
+                System.out.println(e.getMessage());
+            }
     }
 }

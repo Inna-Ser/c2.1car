@@ -44,22 +44,7 @@ public class Driver<T extends Transport & Competing> implements Driving {
     }
 
     public void setDrivingLicense(String drivingLicense) {
-        if (drivingLicense == null || drivingLicense.isBlank()) {
-            try {
-                throw new IrregularDriveLicenseException("Необходимо корректно указать тип прав!" + toString().toString(), this);
-            } catch (IrregularDriveLicenseException e) {
-                System.out.println(e.getMessage());
-            }
-        }
-        if (drivingLicense.equals("B") || drivingLicense.equals("C") || drivingLicense.equals("D")) {
-            this.drivingLicense = drivingLicense;
-        } else {
-            try {
-                throw new IrregularDriveLicenseException("Необходимо корректно указать тип прав!" + toString().toString(), this);
-            } catch (IrregularDriveLicenseException e) {
-                System.out.println(e.getMessage());
-            }
-        }
+        this.drivingLicense = drivingLicense;
     }
 
     public int getDrivingExperience() {

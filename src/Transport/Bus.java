@@ -1,6 +1,6 @@
 package Transport;
 
-import Driver.Driver;
+import Exception.NotPassDiagnosticException;
 
 public class Bus extends Transport implements Competing {
 public enum TypeBody {
@@ -54,6 +54,11 @@ private TypeBody typeBody;
     @Override
     public void findMaximumSpeed(int speedCircle1, int speedCircle2) {
         super.findMaximumSpeed(speedCircle1, speedCircle2);
+    }
+
+    @Override
+    public void passDiagnostic() throws NotPassDiagnosticException {
+        throw new NotPassDiagnosticException("Автобусы не могут проходить диагностику", this);
     }
 
     @Override

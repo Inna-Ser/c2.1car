@@ -1,7 +1,5 @@
 package Transport;
 
-import Driver.Driver;
-
 public class Car extends Transport implements Competing {
     public enum TypeBody {
         COUPE("Купе"),
@@ -51,7 +49,11 @@ public class Car extends Transport implements Competing {
     @Override
     public void findMaximumSpeed(int speedCircle1, int speedCircle2) {
         super.findMaximumSpeed(speedCircle1, speedCircle2);
+    }
 
+    @Override
+    public void passDiagnostic() {
+        System.out.println("Автомобиль " + getBrand() + " " + getModel() + " диагностику прошел");
     }
 
     @Override

@@ -1,6 +1,8 @@
 package Transport;
 
-public abstract class Transport implements Competing {
+import Exception.NotPassDiagnosticException;
+
+public abstract class Transport extends Object implements Competing {
     public static final String START_MOVE = "Начал движение";
     public static final String FINISH_MOVE = "Закончил движение";
     public static final String PIT_STOP = "Поменял резину";
@@ -43,21 +45,22 @@ public abstract class Transport implements Competing {
     }
 
     public void doStartMove() {
-        System.out.println("Автомобиль " + brand + " " + model + " " + START_MOVE);
+        System.out.println("Автомобиль " + brand + " " + model + START_MOVE);
     }
 
     public void doFinishMove() {
         System.out.println("Автомобиль " + brand + " " + model + " " + START_MOVE);
     }
-
-    public abstract void printTypeBody();
-
-    // методы класса Competing
     @Override
     public void doPitStop() {
         System.out.println("Автомобиль " + brand + " " + model + " " + PIT_STOP);
     }
 
+    public abstract void printTypeBody();
+
+    public void passDiagnostic() throws NotPassDiagnosticException {
+        System.out.println("Автомобиль " + brand + " " + model + " диагностику прошел");
+    }
     @Override
     public void findMaximumSpeed(int speedCircle1, int speedCircle2) {
         int maximumSpeed;

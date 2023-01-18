@@ -2,34 +2,38 @@ package Transport;
 
 import Exception.NotPassDiagnosticException;
 
+import Driver.Driver;
+import java.util.List;
+
 public class Bus extends Transport implements Competing {
-public enum TypeBody {
-    VERY_SMALL(0, 10),
-    SMALL(10, 25),
-    MEDIUM(40, 50),
-    BIG(60, 80),
-    VERY_BIG(100, 120);
-    private final Integer min;
-    private final Integer max;
 
-    TypeBody(Integer min, Integer max) {
-        this.min = min;
-        this.max = max;
+    public enum TypeBody {
+        VERY_SMALL(0, 10),
+        SMALL(10, 25),
+        MEDIUM(40, 50),
+        BIG(60, 80),
+        VERY_BIG(100, 120);
+        private final Integer min;
+        private final Integer max;
+
+        TypeBody(Integer min, Integer max) {
+            this.min = min;
+            this.max = max;
+        }
+
+        public Integer getMin() {
+            return min;
+        }
+
+        public Integer getMax() {
+            return max;
+        }
     }
 
-    public Integer getMin() {
-        return min;
-    }
+    private TypeBody typeBody;
 
-    public Integer getMax() {
-        return max;
-    }
-}
-private TypeBody typeBody;
-
-    public Bus(String brand, String model, double engineVolume,
-               TypeBody typeBody) {
-        super(brand, model, engineVolume);
+    public Bus(String brand, String model, double engineVolume, Driver<Bus> drivers, List<Mechanic> mechanics, TypeBody typeBody) {
+        super(brand, model, engineVolume, drivers, mechanics);
         this.typeBody = typeBody;
     }
 
@@ -62,8 +66,20 @@ private TypeBody typeBody;
     }
 
     @Override
+    public void toDoDiagnostic() {
+        System.out.println(Transport.MAKE_DIAGNOSTICS);
+    }
+
+    @Override
+    public void toFixTheVehicle() {
+        System.out.println(Transport.FIX_THE_VEHICLE);
+    }
+
+    @Override
     public String toString() {
-        return super.toString() + ", тип кузова - " + typeBody;
+        return super.toString() + ", тип кузова= " + typeBody
+                 + "\n   driver= " + getDrivers()
+                +"\n   mechanic= " + getMechanics();
     }
 }
 

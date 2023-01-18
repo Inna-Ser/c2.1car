@@ -43,7 +43,7 @@ public class Main {
         nevsorov.addTypeService(Bus.class);
         nevsorov.addTypeService(Truck.class);
 
-        Bus mercedes = new Bus("Mercedes", "Tourismo", 4.8, boris, List.of(ivanov, rogov), Bus.TypeBody.BIG);
+        Bus mercedes = new Bus("Mercedes", "Tourismo", 4.8, boris, List.of(mikhalev, rogov), Bus.TypeBody.BIG);
         Bus volvo = new Bus("Volvo", "Scania", 3.0, sergey, List.of(mikhalev, rogov), Bus.TypeBody.BIG);
         Bus maz = new Bus("MAZ", "PAZ", 3.6, toliy, List.of(mikhalev, rogov), Bus.TypeBody.SMALL);
         Bus ford = new Bus("Ford", "Transit", 2.2, vova, List.of(mikhalev, rogov), Bus.TypeBody.VERY_BIG);
@@ -72,6 +72,14 @@ public class Main {
         transports.add(chevrolet);
         transports.add(peterbilt);
         System.out.println(" ");
+
+        Map<Transport, List<Mechanic>> mapMechanic = new HashMap<>();
+        mapMechanic.put(audi, List.of(potapov, nevsorov));
+        mapMechanic.put(mercedes, List.of(mikhalev, rogov));
+        mapMechanic.put(mercedes, List.of(mikhalev, rogov));
+        mapMechanic.put(mercedes, List.of(mikhalev, rogov));
+        mapMechanic.put(peterbilt, List.of(ivanov, rogov));
+        mapMechanic.put(mercedes, List.of(mikhalev, rogov));
 
         System.out.println("Bus" + mercedes);
         System.out.println("Bus" + volvo);
@@ -143,6 +151,9 @@ public class Main {
         repairStation.doMaintenance();
         System.out.println(" ");
 
+        System.out.println(mapMechanic.get(mercedes));
+        System.out.println(mapMechanic.get(audi));
+        System.out.println(mapMechanic.get(peterbilt));
     }
 
 

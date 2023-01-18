@@ -1,5 +1,9 @@
 package Transport;
 
+import Driver.Driver;
+
+import java.util.List;
+
 public class Truck extends Transport implements Competing {
 
     public enum TypeBody {
@@ -25,8 +29,8 @@ public class Truck extends Transport implements Competing {
 
     private TypeBody typeBody;
 
-    public Truck(String brand, String model, double engineVolume, TypeBody typeBody) {
-        super(brand, model, engineVolume);
+    public Truck(String brand, String model, double engineVolume, Driver<Truck> drivers, List<Mechanic> mechanics, TypeBody typeBody) {
+        super(brand, model, engineVolume, drivers, mechanics);
         this.typeBody = typeBody;
     }
 
@@ -62,8 +66,20 @@ public class Truck extends Transport implements Competing {
     }
 
     @Override
+    public void toDoDiagnostic() {
+        System.out.println(Transport.MAKE_DIAGNOSTICS);
+    }
+
+    @Override
+    public void toFixTheVehicle() {
+        System.out.println(Transport.FIX_THE_VEHICLE);
+    }
+
+    @Override
     public String toString() {
-        return super.toString() + ", тип кузова - " + typeBody;
+        return super.toString() + ", тип кузова= " + typeBody
+                + "\n   driver= " + getDrivers()
+                +"\n   mechanic= " + getMechanics();
     }
 }
 

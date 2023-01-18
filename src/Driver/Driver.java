@@ -11,25 +11,28 @@ public class Driver<T extends Transport & Competing> implements Driving {
 
     public Driver(String fullName, String drivingLicense, int drivingExperience) {
         if (fullName == null || fullName.isEmpty() || fullName.isBlank()) {
-            this.fullName = "Иванов Иван Иванови";
+            this.fullName = "Иванов Иван Иванович";
         } else {
             this.fullName = fullName;
         }
-        if (drivingLicense == null || drivingLicense.isBlank() || drivingLicense.equals("B")
-                || drivingLicense.equals("C") || drivingLicense.equals("D")) {
-            try {
-                throw new IrregularDriveLicenseException("Необходимо корректно указать тип прав!" + toString().toString(), this);
-            } catch (IrregularDriveLicenseException e) {
-                System.out.println(e.getMessage());
-            }
+        if (drivingLicense != null || !drivingLicense.isEmpty() || !drivingLicense.isBlank()) {
+            if (drivingLicense.equals("B") || drivingLicense.equals("C") || drivingLicense.equals("D")) {
                 this.drivingLicense = drivingLicense;
-            }
-            if (drivingExperience < 0) {
-                this.drivingExperience = Math.abs(drivingExperience);
             } else {
-                this.drivingExperience = drivingExperience;
+                try {
+                    throw new IrregularDriveLicenseException("Необходимо корректно указать тип прав!" +
+                            toString().toString(), this);
+                } catch (IrregularDriveLicenseException e) {
+                    System.out.println(e.getMessage());
+                }
             }
         }
+        if (drivingExperience < 0) {
+            this.drivingExperience = Math.abs(drivingExperience);
+        } else {
+        this.drivingExperience = drivingExperience;
+        }
+    }
 
     public String getFullName() {
         return fullName;
@@ -44,7 +47,16 @@ public class Driver<T extends Transport & Competing> implements Driving {
     }
 
     public void setDrivingLicense(String drivingLicense) {
+//        if (drivingLicense == null || drivingLicense.isBlank() || drivingLicense.isEmpty() ||
+//                !drivingLicense.equals("B") || !drivingLicense.equals("C") || !drivingLicense.equals("D")) {
+//            try {
+//                throw new IrregularDriveLicenseException("Необходимо корректно указать тип прав!" + toString().toString(), this);
+//            } catch (IrregularDriveLicenseException e) {
+//                System.out.println(e.getMessage());
+//            }
+//        } else {
         this.drivingLicense = drivingLicense;
+//        }
     }
 
     public int getDrivingExperience() {
@@ -78,10 +90,9 @@ public class Driver<T extends Transport & Competing> implements Driving {
 
     @Override
     public String toString() {
-        return "Driver{" +
-                "fullName='" + fullName + '\'' +
+        return  fullName + '\'' +
                 ", drivingLicense='" + drivingLicense + '\'' +
-                ", drivingExperience=" + drivingExperience +
-                '}';
+                ", drivingExperience= " + drivingExperience +
+                " year";
     }
 }

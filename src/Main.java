@@ -143,8 +143,6 @@ public class Main {
         repairStation.doMaintenance();
         System.out.println(" ");
 
-        repairStation.addTransport(List.of(ladaGranta, bmw, volvo, peterbilt, kia, mercedes, chevrolet));
-
     }
 
 

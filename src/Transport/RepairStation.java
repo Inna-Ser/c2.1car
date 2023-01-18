@@ -18,7 +18,7 @@ public class RepairStation {
         while (queue.peek() != null) {
             Transport nextTransport = queue.poll();
             if (nextTransport != null) {
-                System.out.println("Сделали диагностику " + nextTransport.getBrand() + " " + nextTransport.getModel());
+                System.out.println(nextTransport.getMechanics() + " " + Competing.MAKE_DIAGNOSTICS + " " + nextTransport.getBrand() + " " + nextTransport.getModel());
             }
         }
     }

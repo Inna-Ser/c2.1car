@@ -1,7 +1,9 @@
 package Transport;
+
 import Exception.NotPassDiagnosticException;
 
 import Driver.Driver;
+
 import java.util.ArrayList;
 import java.util.List;
 

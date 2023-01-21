@@ -4,7 +4,7 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 public class RepairStation {
-    public final Queue<Transport> queue = new LinkedList<>();
+    private final Queue<Transport> queue = new LinkedList<>();
 
     public void addTransport(Transport transport) {
         if ((transport instanceof Bus)) {
@@ -23,6 +23,11 @@ public class RepairStation {
         }
     }
 
+    public void printMaintenance(RepairStation... repairStations) {
+        for (RepairStation repairStation : repairStations) {
+            System.out.println();
+        }
+    }
 //    public void addTransport(List<Transport> transports) {
 //        for (Transport transport : transports) {
 //            this.addTransport(transport);

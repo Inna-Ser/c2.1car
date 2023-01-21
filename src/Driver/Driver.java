@@ -1,8 +1,9 @@
 package Driver;
-
 import Exception.IrregularDriveLicenseException;
 import Transport.Competing;
 import Transport.Transport;
+
+import java.util.*;
 
 public class Driver<T extends Transport & Competing> implements Driving {
     private String fullName;
@@ -47,16 +48,7 @@ public class Driver<T extends Transport & Competing> implements Driving {
     }
 
     public void setDrivingLicense(String drivingLicense) {
-//        if (drivingLicense == null || drivingLicense.isBlank() || drivingLicense.isEmpty() ||
-//                !drivingLicense.equals("B") || !drivingLicense.equals("C") || !drivingLicense.equals("D")) {
-//            try {
-//                throw new IrregularDriveLicenseException("Необходимо корректно указать тип прав!" + toString().toString(), this);
-//            } catch (IrregularDriveLicenseException e) {
-//                System.out.println(e.getMessage());
-//            }
-//        } else {
         this.drivingLicense = drivingLicense;
-//        }
     }
 
     public int getDrivingExperience() {
@@ -66,6 +58,8 @@ public class Driver<T extends Transport & Competing> implements Driving {
     public void setDrivingExperience(int drivingExperience) {
         this.drivingExperience = drivingExperience;
     }
+
+
 
     @Override
     public void doStartMove() {
@@ -82,7 +76,7 @@ public class Driver<T extends Transport & Competing> implements Driving {
         System.out.println("Заправить автомобиль");
     }
 
-    public void drive(T transport) {
+    public void toDrive(T transport) {
         System.out.println(" Водитель " + getFullName() +
                 " управляет автомобилем " + transport.getBrand() +
                 " " + transport.getModel() + " и будет участвовать в заезде.");
@@ -94,5 +88,19 @@ public class Driver<T extends Transport & Competing> implements Driving {
                 ", drivingLicense='" + drivingLicense + '\'' +
                 ", drivingExperience= " + drivingExperience +
                 " year";
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Driver<?> driver = (Driver<?>) o;
+        return drivingExperience == driver.drivingExperience && Objects.equals(fullName, driver.fullName) && Objects.equals(drivingLicense, driver.drivingLicense);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = fullName.hashCode() + drivingLicense.hashCode();
+        return Objects.hash(fullName, drivingLicense, drivingExperience);
     }
 }

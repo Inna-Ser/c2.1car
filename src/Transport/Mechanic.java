@@ -3,7 +3,7 @@ package Transport;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Mechanic <T extends Transport> {
+public class Mechanic {
     public enum Company {
         BUS("BUSTRADE"),
         TRUCK("SERVICE_TRUCK"),

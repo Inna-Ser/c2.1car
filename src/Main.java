@@ -27,7 +27,7 @@ public class Main {
         Driver<Truck> ruben = new Driver("Горгорян Рубен Арменович", "C", 15);
         System.out.println(" ");
 
-        List<Class<? extends Transport>> mechanics = new ArrayList<>();
+        List<Class> mechanics = new ArrayList<>();
         Mechanic potapov = new Mechanic("Николай", "Потапов", Mechanic.Company.CAR);
         potapov.addTypeService(Car.class);
         Mechanic mikhalev = new Mechanic("Иван", "Михалев", Mechanic.Company.BUS);
@@ -80,6 +80,7 @@ public class Main {
         mapMechanic.put(mercedes, List.of(mikhalev, rogov));
         mapMechanic.put(peterbilt, List.of(ivanov, rogov));
         mapMechanic.put(mercedes, List.of(mikhalev, rogov));
+        System.out.println(" ");
 
         System.out.println("Bus" + mercedes);
         System.out.println("Bus" + volvo);
@@ -115,9 +116,9 @@ public class Main {
         System.out.println(andrey);
 
         System.out.println(" ");
-        roman.drive(audi);
-        sergey.drive(volvo);
-        andrey.drive(chevrolet);
+        roman.toDrive(audi);
+        sergey.toDrive(volvo);
+        andrey.toDrive(chevrolet);
         System.out.println(" ");
 
         maz.printTypeBody();
@@ -151,9 +152,33 @@ public class Main {
         repairStation.doMaintenance();
         System.out.println(" ");
 
+        System.out.println(mapMechanic);
         System.out.println(mapMechanic.get(mercedes));
         System.out.println(mapMechanic.get(audi));
         System.out.println(mapMechanic.get(peterbilt));
+        System.out.println(" ");
+
+        Set<Driver<?>> driverSet = new HashSet<>();
+        driverSet.addAll(drivers);
+        driverSet.add(alexey);
+        driverSet.add(boris);
+        driverSet.add(boris);
+        driverSet.add(artem);
+        driverSet.add(mikhail);
+        driverSet.add(roman);
+        driverSet.add(sergey);
+        driverSet.add(andrey);
+        driverSet.add(andrey);
+        driverSet.add(andrey);
+        driverSet.add(misha);
+        driverSet.add(gena);
+        driverSet.add(ruben);
+        driverSet.add(toliy);
+        driverSet.add(vova);
+
+        Iterator<Driver<?>> iterator = driverSet.iterator();
+        while (iterator.hasNext())
+            System.out.println(iterator.next());
     }
 
 
